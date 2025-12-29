@@ -2,7 +2,7 @@
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
 # Copyright (c) 2021-2025 tteck
 # Author: tteck (tteckster)
-# Co-Author: [athena-sh]
+# Co-Author: athena-sh
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/Whisparr/Whisparr (eros branch)
 
@@ -30,7 +30,7 @@ function update_script() {
   fi
   msg_info "Updating ${APP}"
   systemctl stop whisparr
-  RELEASE=$(curl -s https://api.github.com/repos/athena-sh/whisparr-v3-builds/releases/latest | grep "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
+  RELEASE=$(curl -s https://api.github.com/repos/athena-sh/whisparr-v3-builds/releases | grep -m 1 "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
   if [[ ! -f /opt/${APP}_version.txt ]] || [[ "${RELEASE}" != "$(cat /opt/${APP}_version.txt)" ]]; then
     msg_info "Updating ${APP} to ${RELEASE}"
     cd /opt
