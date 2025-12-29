@@ -2,7 +2,7 @@
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
 # Copyright (c) 2021-2025 tteck
 # Author: tteck (tteckster)
-# Co-Author: [Your GitHub Username]
+# Co-Author: [athena-sh]
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/Whisparr/Whisparr (eros branch)
 
