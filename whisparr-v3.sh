@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+
+# Download and patch build.func to use custom install script repo
+BUILD_FUNC=$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+BUILD_FUNC_PATCHED=$(echo "$BUILD_FUNC" | sed 's|https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/install/${var_install}.sh|https://raw.githubusercontent.com/athena-sh/whisparr-v3-builds/main/whisparr-v3-install.sh|g')
+source <(echo "$BUILD_FUNC_PATCHED")
+
 # Copyright (c) 2021-2025 tteck
 # Author: tteck (tteckster)
 # Co-Author: athena-sh
@@ -7,7 +12,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxV
 # Source: https://github.com/Whisparr/Whisparr (eros branch)
 
 APP="Whisparr-v3"
-var_tags="${var_tags:-arr}"
+var_tags="${var_tags:-arr;whisparr;eros-branch;community-script}"
 var_cpu="${var_cpu:-2}"
 var_ram="${var_ram:-1024}"
 var_disk="${var_disk:-12}"
@@ -55,4 +60,4 @@ description
 msg_ok "Completed Successfully!\n"
 echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
 echo -e "${INFO}${YW} Access it using the following URL:${CL}"
-echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:6969${CL}"
+echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:6969${CL}
