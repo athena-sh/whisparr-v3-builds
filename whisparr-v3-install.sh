@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2025 tteck
 # Author: tteck (tteckster)
-# Co-Author: [athena-sh]
+# Co-Author: athena-sh
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/Whisparr/Whisparr (eros branch)
 
@@ -24,7 +24,7 @@ chmod 775 /var/lib/whisparr/
 
 # Download pre-compiled Whisparr v3 from GitHub releases
 cd /opt || exit
-RELEASE=$(curl -s https://api.github.com/repos/athena-sh/whisparr-v3-builds/releases/latest | grep "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
+RELEASE=$(curl -s https://api.github.com/repos/athena-sh/whisparr-v3-builds/releases | grep -m 1 "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
 msg_info "Downloading Whisparr v3 ${RELEASE}"
 $STD curl -fsSL "https://github.com/athena-sh/whisparr-v3-builds/releases/download/${RELEASE}/Whisparr-v3-eros.tar.gz" -o Whisparr-v3-eros.tar.gz
 $STD tar -xzf Whisparr-v3-eros.tar.gz
